@@ -1,0 +1,87 @@
+//
+//  Utility.h
+//  WeClub
+//
+//  Created by chao_mit on 13-1-23.
+//  Copyright (c) 2013年 mitbbs. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "Header.h"
+#import <CoreLocation/CoreLocation.h>
+#import "Reachability.h"
+#import "RequestProxy.h"
+#import "NSDate-Utilities.h"
+
+@interface Utility : NSObject<RequestProxyDelegate,CLLocationManagerDelegate>{
+    RequestProxy *rp;
+    Club *myClub;
+}
++(void)printDic:(NSDictionary *)dic;
++ (void)MsgBox:(NSString *)msg;
++ (UIAlertView *)MsgBox:(NSString *)msg AndTitle:(NSString *)title  AndDelegate:(id)delegate AndCancelBtn:(NSString *)cancel AndOtherBtn:(NSString *)other withStyle:(UIAlertViewStyle) style;
+//AlertView警告框
++ (void)showHUD:(NSString *)msg;
++ (void)showHUD:(NSString *)msg afterDelay:(float)delayTime;
++ (void)showTextOnly:(NSString *)msg isWait:(BOOL)bWait;
++ (void)showWaitHUD:(NSString *)msg withView:(UIView *)view;
++ (void)showHUDWithTitleAndButton:(NSString *)msg withView:(UIView *)view;
++ (void) hideWaitHUDForView;
++ (void)hideWaitHUDForView:(UIView *)view;//通知
++ (void)checkDirs;//检查目录
++ (BOOL)checkNetWork;//查看网络
++ (void)clearCacheAuto;
++(void)checkVersion;//版本
++ (UIImage *)rotateImage:(UIImage *)oldImage;
++ (CGSize)calShowThumbSize:(CGSize)oldSize;
++ (CGSize)calSaveThumbSize:(CGSize)oldSize;
++ (CATransition*)createAnimationWithType:(NSString *)type withsubtype:(NSString *)subtype withDuration:(double)duration;
++(CGFloat)getSizeByContent:(NSString *)content withWidth:(CGFloat)contentWidth withFontSize:(CGFloat)fontSize;
++(CGFloat)getWidthByContent:(NSString *)content withHeight:(CGFloat)contentheight withFontSize:(CGFloat)fontSize;//获取字符串（以某一字体显示）长度或宽度
++(NSUInteger) unicodeLengthOfString: (NSString *) text;//根据字节数计算文件大小
++(NSUInteger) getByteLengthOfString: (NSString *) text;
++ (NSString *)calFileSize:(int)length;//获取文件大小
++ (void)addViews:(NSArray *)list withView:(UIView *)containerView withImageSize:(CGFloat)size withSpace:(CGFloat)space withSEL:(SEL)action;//根据含有表情的字符串生成UIView
++ (CGSize)calFaceViewSize:(NSString *)faceString;
++ (UIView *)getFaceView:(NSString *)faceString;
++ (NSArray *)getSearchHistory;//记录搜索的历史记录
++ (void)storeSearchHistory:(NSMutableArray *)searchHistory;
++(UIImage *)getImage:(NSString *)videoURL;
++(NSString *)getDate:(NSString*)string;//时间戳转为格式化时间
++(void)psImageView:(UIView *)view;
++(void)initStarLevelView:(NSString *)starLevel withStarView:(UIView *)starLevelView;
+- (void)getUserTypeForClub:(Club *)togoClub;
+- (id)init;
++(NSString *)getDistance:(NSString *)distance;//计算距离 
++(void)getVideoDirection;
++ (NSString *)getCacheDir;
+//TODO MBProgress
++(void)styleLbl:(UILabel *)lbl withTxtColor:(UIColor *)txtColor withBgColor:(UIColor*)bgColor withFontSize:(CGFloat)size;
++(void)addTapGestureRecognizer:(UIView *)view withTarget:(id)target action:(SEL)action;
++(NSString *)numberSwitch:(NSString *)number;
++(NSString *)getStarLevel:(NSString *)number;//计算星级
++(void)clearCache;//清除缓存
++(NSString *)getLastDate:(NSDate *)lastDate;
++(NSString *)getDistanceString:(NSString *)location;
++(NSString *)getImageName:(NSString *)str;
++(NSDictionary *)qrAnalyse:(NSString *)qr;
++(void)addDetailShow:(UIImageView *)imageView;//文章内容处理方法
++ (CGFloat)getMixedViewHeight:(NSString *)str withWidth:(CGFloat)width;
++ (NSMutableArray *)cutMixedString:(NSString *)str;
++ (void)attachString:(NSString *)str toView:(UIView *)targetView;
++ (BOOL)calLines:(NSString *)string withMaxCount:(int)maxCount;//计算行数
++ (NSMutableArray *)mycutMixedString:(NSString *)str;
++ (void)emotionAttachString:(NSString *)str toView:(UIView *)targetView;//添加表情
++ (void)emotionAttachString:(NSString *)str toView:(UIView *)targetView font:(float)fontSize isCut:(BOOL)cutflag;
++ (NSString *)processClubName:(NSString *)clubName withWidth:(CGFloat)labelWidth  withHeight:(CGFloat)contentheight withFontSize:(CGFloat)fontSize;//处理俱乐部名称，如果"<俱乐部名字>"长度大于label宽度的话,把字符串改成<俱乐部...>的形式
++ (int)minNum:(int)a andNum1:(int)b andNum2:(int)c;
+//分享文章等时自动绑定账号
++ (void)addShareList:(int)shareType;
++ (int)emtionAanalyse:(NSString *)str;//解析字符串
++ (NSString *)getDirectorySize:(NSString *)path;//获取目录的大小
++ (NSString *)switchCategory:(NSString *)categoryStr;
++ (void)removeSubViews:(UIView *)view;//去除子view
++ (NSString *)getDirectory;//获取程序目录
++ (NSString *)urlSwitch:(NSString *)url;
++ (NSString *)urlSwitchBack:(NSString *)url;
+@end
